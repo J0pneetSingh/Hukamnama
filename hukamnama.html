@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Today's Hukamnama · Sri Darbar Sahib</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gurmukhi:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F4F6FA;
+    --bg-soft: #E6EBF3;
+    --ink: #14203A;
+    --ink-soft: #51617E;
+    --gold: #1E3A5F;
+    --gold-bright: #2C5282;
+    --line: rgba(20,32,58,0.12);
+    --card: #FFFFFF;
+    --shadow: rgba(20,42,80,0.10);
+    --water-op: 0.16;
+    --transition: 420ms cubic-bezier(.4,0,.2,1);
+  }
+  html.dark{
+    --bg: #060B18;
+    --bg-soft: #0B1428;
+    --ink: #DCE4F2;
+    --ink-soft: #8DA0C4;
+    --gold: #6B9BD8;
+    --gold-bright: #8FB8E8;
+    --line: rgba(107,155,216,0.18);
+    --card: #0D1730;
+    --shadow: rgba(0,0,0,0.45);
+    --water-op: 0.28;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    transition:background var(--transition), color var(--transition);
+    min-height:100vh;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important; animation:none !important;}
+  }
+
+  .wrap{
+    max-width:700px;
+    margin:0 auto;
+    padding:0 24px 80px;
+  }
+
+  /* ---------- Toggle ---------- */
+  .toggle-row{
+    display:flex;
+    justify-content:flex-end;
+    padding:20px 0 0;
+  }
+  #themeToggle{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--card);
+    border:1px solid var(--line);
+    color:var(--ink);
+    border-radius:999px;
+    padding:8px 14px 8px 10px;
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    cursor:pointer;
+    box-shadow:0 2px 10px var(--shadow);
+    transition:background var(--transition), border-color var(--transition), color var(--transition);
+  }
+  #themeToggle svg{width:16px;height:16px;stroke:var(--gold);}
+  #themeToggle:hover{border-color:var(--gold);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    text-align:center;
+    padding:8px 0 6px;
+  }
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+    margin:0 0 18px;
+  }
+  .dome-wrap{
+    width:100%;
+    max-width:420px;
+    margin:0 auto;
+  }
+  .dome-wrap svg{width:100%;height:auto;display:block;}
+  .dome-fill{fill:var(--gold);}
+  .dome-stroke{stroke:var(--gold); fill:none;}
+  .reflection{opacity:var(--water-op);}
+  .waterline{stroke:var(--gold); stroke-width:1; opacity:0.35;}
+
+  h1.title{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(28px,5vw,40px);
+    margin:18px 0 6px;
+    letter-spacing:-0.01em;
+  }
+  .gregorian{
+    font-size:16px;
+    color:var(--ink-soft);
+    margin:0 0 4px;
+  }
+  .nanakshahi{
+    font-family:'Noto Serif Gurmukhi', serif;
+    font-size:16px;
+    color:var(--gold);
+    margin:0 0 22px;
+  }
+
+  .meta-row{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:36px;
+  }
+  .meta-pill{
+    background:var(--bg-soft);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:7px 16px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .meta-pill b{color:var(--ink); font-weight:600;}
+
+  /* ---------- Divider ---------- */
+  .arch-divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin:8px 0 40px;
+    color:var(--gold);
+  }
+  .arch-divider .l, .arch-divider .r{
+    height:1px;
+    flex:1;
+    background:linear-gradient(90deg, transparent, var(--line));
+  }
+  .arch-divider .r{background:linear-gradient(270deg, transparent, var(--line));}
+  .arch-divider svg{width:22px;height:22px;flex-shrink:0;}
+
+  /* ---------- Verses ---------- */
+  .verse{
+    margin-bottom:34px;
+    padding-left:18px;
+    border-left:2px solid transparent;
+  }
+  .verse.rahau{
+    border-left-color:var(--gold);
+    padding:4px 0 4px 16px;
+    position:relative;
+  }
+  .rahau-tag{
+    display:inline-block;
+    font-size:10.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .verse.header-line{
+    text-align:center;
+    padding-left:0;
+    border-left:none;
+    margin-bottom:30px;
+  }
+  .gurmukhi{
+    font-family:'Noto Serif Gurmukhi', serif;
+    font-size:clamp(21px,3.4vw,26px);
+    font-weight:500;
+    line-height:1.55;
+    margin:0 0 8px;
+  }
+  .verse.header-line .gurmukhi{
+    font-size:19px;
+    color:var(--ink-soft);
+    font-weight:400;
+  }
+  .translit{
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:14.5px;
+    line-height:1.6;
+    margin:0 0 8px;
+  }
+  .meaning{
+    font-size:16px;
+    line-height:1.65;
+    margin:0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    text-align:center;
+    margin-top:40px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    color:var(--ink-soft);
+    font-size:12.5px;
+    line-height:1.8;
+  }
+  footer a{color:var(--gold); text-decoration:none;}
+  footer a:hover{text-decoration:underline;}
+
+  /* ---------- States ---------- */
+  .state{
+    text-align:center;
+    padding:80px 20px;
+    color:var(--ink-soft);
+  }
+  .spinner{
+    width:30px;height:30px;
+    border-radius:50%;
+    border:2.5px solid var(--line);
+    border-top-color:var(--gold);
+    margin:0 auto 18px;
+    animation:spin 0.9s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .state p{margin:4px 0;}
+  .retry-btn{
+    margin-top:16px;
+    background:var(--gold);
+    color:var(--bg);
+    border:none;
+    border-radius:8px;
+    padding:10px 20px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Inter',sans-serif;
+  }
+  .fade-in{animation:fadeIn 700ms ease both;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="toggle-row">
+    <button id="themeToggle" aria-label="Toggle dark mode">
+      <svg id="toggleIcon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+      <span id="toggleLabel">Dark</span>
+    </button>
+  </div>
+
+  <div id="content">
+    <div class="state" id="loadingState">
+      <div class="spinner"></div>
+      <p>Fetching today's Hukamnama…</p>
+      <p style="font-size:12.5px;">from Sri Darbar Sahib, Amritsar</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ---------- Theme ----------
+  const root = document.documentElement;
+  const toggleBtn = document.getElementById('themeToggle');
+  const toggleIcon = document.getElementById('toggleIcon');
+  const toggleLabel = document.getElementById('toggleLabel');
+
+  const sunPath = '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>';
+  const moonPath = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+
+  function applyTheme(isDark){
+    root.classList.toggle('dark', isDark);
+    toggleIcon.innerHTML = isDark ? sunPath : moonPath;
+    toggleLabel.textContent = isDark ? 'Light' : 'Dark';
+    localStorage.setItem('hukam-theme', isDark ? 'dark' : 'light');
+  }
+
+  const saved = localStorage.getItem('hukam-theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(saved ? saved === 'dark' : prefersDark);
+
+  toggleBtn.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
+
+  // ---------- Dome graphic ----------
+  const domeSVG = `
+  <svg viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg">
+    <g class="dome-stroke" stroke-width="1.3">
+      <line class="waterline" x1="10" y1="140" x2="410" y2="140"></line>
+    </g>
+    <g class="dome-fill">
+      <path d="M210 30c-14 0-24 12-26 24-10 2-17 10-17 20v10h86v-10c0-10-7-18-17-20-2-12-12-24-26-24z"></path>
+      <path d="M205 24 L210 12 L215 24 Z"></path>
+      <rect x="150" y="84" width="120" height="8" rx="2"></rect>
+      <path d="M120 130c-8 0-14 7-15 14h30c-1-7-7-14-15-14z" opacity="0.85"></path>
+      <path d="M300 130c-8 0-14 7-15 14h30c-1-7-7-14-15-14z" opacity="0.85"></path>
+      <rect x="95" y="112" width="60" height="30" opacity="0.85"></rect>
+      <rect x="265" y="112" width="60" height="30" opacity="0.85"></rect>
+      <rect x="150" y="94" width="120" height="48"></rect>
+    </g>
+    <g class="reflection dome-fill" transform="translate(0,280) scale(1,-1)">
+      <path d="M210 30c-14 0-24 12-26 24-10 2-17 10-17 20v10h86v-10c0-10-7-18-17-20-2-12-12-24-26-24z"></path>
+      <rect x="150" y="84" width="120" height="8" rx="2"></rect>
+      <path d="M120 130c-8 0-14 7-15 14h30c-1-7-7-14-15-14z" opacity="0.85"></path>
+      <path d="M300 130c-8 0-14 7-15 14h30c-1-7-7-14-15-14z" opacity="0.85"></path>
+      <rect x="95" y="112" width="60" height="30" opacity="0.85"></rect>
+      <rect x="265" y="112" width="60" height="30" opacity="0.85"></rect>
+      <rect x="150" y="94" width="120" height="48"></rect>
+    </g>
+  </svg>`;
+
+  const archIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V11a8 8 0 0 1 16 0v9"></path></svg>`;
+
+  // ---------- Fetch Hukamnama ----------
+  const contentEl = document.getElementById('content');
+
+  function escapeHtml(str){
+    return (str || '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+  }
+
+  function renderError(err){
+    contentEl.innerHTML = `
+      <div class="state">
+        <p style="font-family:'Fraunces',serif;font-size:20px;color:var(--ink);">Today's Hukamnama didn't load</p>
+        <p>All available Gurbani data sources were unreachable just now — this is usually temporary.</p>
+        <button class="retry-btn" onclick="location.reload()">Try again</button>
+        <p style="margin-top:18px;"><a href="https://hukamnamasahib.com" target="_blank" style="color:var(--gold);">Read it at hukamnamasahib.com →</a></p>
+        ${err ? `<p style="margin-top:14px;font-size:11px;opacity:0.6;max-width:520px;margin-left:auto;margin-right:auto;">Attempts: ${escapeHtml(String(err.message || err))}</p>` : ''}
+      </div>`;
+  }
+
+  function renderHukamnama(data, live){
+    const info = data.hukamnamainfo;
+    const dg = data.date.gregorian;
+    const dn = data.date.nanakshahi.english;
+    const dnp = data.date.nanakshahi.punjabi;
+
+    const gregorianStr = `${dg.day}, ${dg.month} ${dg.date}, ${dg.year}`;
+    const nanakshahiStr = `${dnp.date} ${dnp.month} ${dnp.year} ਨਾਨਕਸ਼ਾਹੀ · ${dn.date} ${dn.month} ${dn.year} Nanakshahi`;
+
+    let versesHtml = '';
+    data.hukamnama.forEach(item => {
+      const line = item.line;
+      const isHeader = line.type === 2;
+      const isRahau = line.type === 3;
+      const gurmukhi = escapeHtml(line.gurmukhi.unicode);
+      const translit = escapeHtml(line.transliteration.english.text);
+      const meaning = escapeHtml(line.translation.english.default);
+
+      versesHtml += `
+        <div class="verse ${isHeader ? 'header-line' : ''} ${isRahau ? 'rahau' : ''}">
+          ${isRahau ? '<span class="rahau-tag">ਰਹਾਉ · Refrain</span><br>' : ''}
+          <p class="gurmukhi">${gurmukhi}</p>
+          ${!isHeader ? `<p class="translit">${translit}</p><p class="meaning">${meaning}</p>` : `<p class="translit" style="margin:0;">${translit}</p>`}
+        </div>`;
+    });
+
+    contentEl.innerHTML = `
+      <div class="hero fade-in">
+        <p class="eyebrow">Today's Hukamnama</p>
+        <div class="dome-wrap">${domeSVG}</div>
+        <h1 class="title">ਹੁਕਮਨਾਮਾ ਸਾਹਿਬ</h1>
+        <p class="gregorian">${gregorianStr}</p>
+        <p class="nanakshahi">${nanakshahiStr}</p>
+        ${!live ? `<p style="font-size:12px;color:var(--ink-soft);margin:0 0 8px;">Live sources were unreachable — showing a saved copy dated ${dg.month} ${dg.date}, ${dg.year} instead. <a href="#" onclick="location.reload();return false;" style="color:var(--gold);">Retry</a></p>` : ''}
+        <div class="meta-row">
+          <span class="meta-pill">Ang <b>${info.pageno}</b></span>
+          <span class="meta-pill"><b>${escapeHtml(info.raag.english)}</b></span>
+          <span class="meta-pill">${escapeHtml(info.writer.english)}</span>
+        </div>
+      </div>
+      <div class="arch-divider"><span class="l"></span>${archIcon}<span class="r"></span></div>
+      <div class="verses fade-in">
+        ${versesHtml}
+      </div>
+      <footer>
+        <p>Sri Darbar Sahib (Golden Temple), Amritsar — read fresh each day the Guru Granth Sahib is opened.</p>
+        <p>Gurbani text via the <a href="https://api.gurbaninow.com" target="_blank">GurbaniNow</a> API · English translation: Bhai Manmohan Singh</p>
+      </footer>`;
+  }
+
+  // Embedded copy so the page always has something to show even if every
+  // live source is unreachable in this browser session. Live fetch is still
+  // tried first on every load — this is only a safety net, not a replacement.
+  // Sourced and verified against Sri Darbar Sahib's Hukamnama for 29 Aug 2026
+  // (Tilang, Mehla 1, Ang 722).
+  const FALLBACK_DATA = {"date":{"gregorian":{"month":"August","monthno":8,"date":29,"year":2026,"day":"Saturday"},"nanakshahi":{"english":{"month":"Bhadon","monthno":6,"date":14,"year":558,"day":"Sanicharvaar"},"punjabi":{"month":"ਭਾਦੋਂ","monthno":"੬","date":"੧੪","year":"੫੫੮","day":"ਸਨਿੱਚਰਵਾਰ"}}},"hukamnamainfo":{"pageno":722,"source":{"english":"Sri Guru Granth Sahib Ji"},"writer":{"english":"Guru Nanak Dev Ji"},"raag":{"english":"Raag Tilang"},"count":20},"hukamnama":[
+    {"line":{"type":2,"gurmukhi":{"unicode":"ਤਿਲੰਗ ਮਹਲਾ ੧ ॥"},"translation":{"english":{"default":"Tilang, First Mehl:"}},"transliteration":{"english":{"text":"tilang mahalaa 1 |"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਇਆਨੜੀਏ ਮਾਨੜਾ ਕਾਇ ਕਰੇਹਿ ॥"},"translation":{"english":{"default":"O foolish and ignorant soul-bride, why are you so proud?"}},"transliteration":{"english":{"text":"eaanarhee-e maanarhaa kaae karehi |"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਆਪਨੜੈ ਘਰਿ ਹਰਿ ਰੰਗੋ ਕੀ ਨ ਮਾਣੇਹਿ ॥"},"translation":{"english":{"default":"Within the home of your own self, why do you not enjoy the Love of your Lord?"}},"transliteration":{"english":{"text":"aapanarhai ghar har rango kee na maanehi |"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਸਹੁ ਨੇੜੈ ਧਨ ਕੰਮਲੀਏ ਬਾਹਰੁ ਕਿਆ ਢੂਢੇਹਿ ॥"},"translation":{"english":{"default":"Your Husband Lord is so very near, O foolish bride; why do you search for Him outside?"}},"transliteration":{"english":{"text":"sahu nerrai dhan kammalee-e baahar kiaa dhoodhehi |"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਭੈ ਕੀਆ ਦੇਹਿ ਸਲਾਈਆ ਨੈਣੀ ਭਾਵ ਕਾ ਕਰਿ ਸੀਗਾਰੋ ॥"},"translation":{"english":{"default":"Apply the Fear of God as the mascara to adorn your eyes, and make the Love of the Lord your ornament."}},"transliteration":{"english":{"text":"bhai keeaa dehi salaaeeaa nainee bhaav kaa kar seegaaro |"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਤਾ ਸੋਹਾਗਣਿ ਜਾਣੀਐ ਲਾਗੀ ਜਾ ਸਹੁ ਧਰੇ ਪਿਆਰੋ ॥੧॥"},"translation":{"english":{"default":"Then, you shall be known as a devoted and committed soul-bride, when you enshrine love for your Husband Lord. ||1||"}},"transliteration":{"english":{"text":"taa sohaagan jaaneeai laagee jaa sahu dhare piaaro |1|"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਇਆਣੀ ਬਾਲੀ ਕਿਆ ਕਰੇ ਜਾ ਧਨ ਕੰਤ ਨ ਭਾਵੈ ॥"},"translation":{"english":{"default":"What can the silly young bride do, if she is not pleasing to her Husband Lord?"}},"transliteration":{"english":{"text":"eaanee baalee kiaa kare jaa dhan kant na bhaavai |"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਕਰਣ ਪਲਾਹ ਕਰੇ ਬਹੁਤੇਰੇ ਸਾ ਧਨ ਮਹਲੁ ਨ ਪਾਵੈ ॥"},"translation":{"english":{"default":"She may plead and implore so many times, but still, such a bride shall not obtain the Mansion of the Lord's Presence."}},"transliteration":{"english":{"text":"karan palaah kare bahutere saa dhan mahal na paavai |"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਵਿਣੁ ਕਰਮਾ ਕਿਛੁ ਪਾਈਐ ਨਾਹੀ ਜੇ ਬਹੁਤੇਰਾ ਧਾਵੈ ॥"},"translation":{"english":{"default":"Without the karma of good deeds, nothing is obtained, although she may run around frantically."}},"transliteration":{"english":{"text":"vin karamaa kichh paaeeai naahee je bahuteraa dhaavai |"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਲਬ ਲੋਭ ਅਹੰਕਾਰ ਕੀ ਮਾਤੀ ਮਾਇਆ ਮਾਹਿ ਸਮਾਣੀ ॥"},"translation":{"english":{"default":"She is intoxicated with greed, pride and egotism, and engrossed in Maya."}},"transliteration":{"english":{"text":"lab lobh ahankaar kee maatee maaeiaa maahi samaanee |"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਇਨੀ ਬਾਤੀ ਸਹੁ ਪਾਈਐ ਨਾਹੀ ਭਈ ਕਾਮਣਿ ਇਆਣੀ ॥੨॥"},"translation":{"english":{"default":"She cannot obtain her Husband Lord in these ways; the young bride is so foolish! ||2||"}},"transliteration":{"english":{"text":"inee baatee sahu paaeeai naahee bhee kaaman eaanee |2|"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਜਾਇ ਪੁਛਹੁ ਸੋਹਾਗਣੀ ਵਾਹੈ ਕਿਨੀ ਬਾਤੀ ਸਹੁ ਪਾਈਐ ॥"},"translation":{"english":{"default":"Go and ask the happy, pure soul-brides, how did they obtain their Husband Lord?"}},"transliteration":{"english":{"text":"jaae puchhahu sohaaganee vaahai kinee baatee sahu paaeeai |"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਜੋ ਕਿਛੁ ਕਰੇ ਸੋ ਭਲਾ ਕਰਿ ਮਾਨੀਐ ਹਿਕਮਤਿ ਹੁਕਮੁ ਚੁਕਾਈਐ ॥"},"translation":{"english":{"default":"Whatever the Lord does, accept that as good; do away with your own cleverness and self-will."}},"transliteration":{"english":{"text":"jo kichh kare so bhalaa kar maaneeai hikamat hukam chukaaeeai |"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਜਾ ਕੈ ਪ੍ਰੇਮਿ ਪਦਾਰਥੁ ਪਾਈਐ ਤਉ ਚਰਣੀ ਚਿਤੁ ਲਾਈਐ ॥"},"translation":{"english":{"default":"By His Love, true wealth is obtained; link your consciousness to His lotus feet."}},"transliteration":{"english":{"text":"jaa kai premi padaarath paaeeai tau charanee chit laaeeai |"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਸਹੁ ਕਹੈ ਸੋ ਕੀਜੈ ਤਨੁ ਮਨੋ ਦੀਜੈ ਐਸਾ ਪਰਮਲੁ ਲਾਈਐ ॥"},"translation":{"english":{"default":"As your Husband Lord directs, so you must act; surrender your body and mind to Him, and apply this perfume to yourself."}},"transliteration":{"english":{"text":"sahu kahai so keejai tan mano deejai aisaa paramal laaeeai |"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਏਵ ਕਹਹਿ ਸੋਹਾਗਣੀ ਭੈਣੇ ਇਨੀ ਬਾਤੀ ਸਹੁ ਪਾਈਐ ॥੩॥"},"translation":{"english":{"default":"So speaks the happy soul-bride, O sister; in this way, the Husband Lord is obtained. ||3||"}},"transliteration":{"english":{"text":"ev kahahi sohaaganee bhaine inee baatee sahu paaeeai |3|"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਆਪੁ ਗਵਾਈਐ ਤਾ ਸਹੁ ਪਾਈਐ ਅਉਰੁ ਕੈਸੀ ਚਤੁਰਾਈ ॥"},"translation":{"english":{"default":"Give up your selfhood, and so obtain your Husband Lord; what other clever tricks are of any use?"}},"transliteration":{"english":{"text":"aap gavaaeeai taa sahu paaeeai aaur kaisee chaturaaee |"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਸਹੁ ਨਦਰਿ ਕਰਿ ਦੇਖੈ ਸੋ ਦਿਨੁ ਲੇਖੈ ਕਾਮਣਿ ਨਉ ਨਿਧਿ ਪਾਈ ॥"},"translation":{"english":{"default":"When the Husband Lord looks upon the soul-bride with His Gracious Glance, that day is historic — the bride obtains the nine treasures."}},"transliteration":{"english":{"text":"sahu nadar kar dekhai so din lekhai kaaman nau nidh paaee |"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਆਪਣੇ ਕੰਤ ਪਿਆਰੀ ਸਾ ਸੋਹਾਗਣਿ ਨਾਨਕ ਸਾ ਸਭਰਾਈ ॥"},"translation":{"english":{"default":"She who is loved by her Husband Lord, is the true soul-bride; O Nanak, she is the queen of all."}},"transliteration":{"english":{"text":"aapane kant piaaree saa sohaagan naanak saa sabharaaee |"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਐਸੇ ਰੰਗਿ ਰਾਤੀ ਸਹਜ ਕੀ ਮਾਤੀ ਅਹਿਨਿਸਿ ਭਾਇ ਸਮਾਣੀ ॥"},"translation":{"english":{"default":"Thus she is imbued with His Love, intoxicated with delight; day and night, she is absorbed in His Love."}},"transliteration":{"english":{"text":"aise rang raatee sahaj kee maatee ahinis bhaae samaanee |"}}}},
+    {"line":{"type":4,"gurmukhi":{"unicode":"ਸੁੰਦਰਿ ਸਾਇ ਸਰੂਪ ਬਿਚਖਣਿ ਕਹੀਐ ਸਾ ਸਿਆਣੀ ॥੪॥੨॥੪॥"},"translation":{"english":{"default":"She is beautiful, glorious and brilliant; she is known as truly wise. ||4||2||4||"}},"transliteration":{"english":{"text":"sundar saae saroop bichakhan kaheeai saa siaanee |4|2|4|"}}}}
+  ],"error":false};
+
+  const PRIMARY_HOST = 'https://api.gurbaninow.com';
+  const MIRROR_HOST = 'https://dev-api.gurbaninow.com';
+
+  // Sri Darbar Sahib is in India — the Hukamnama "date" is anchored to IST,
+  // so compute today's date in IST rather than the browser's local date.
+  function todayIST(){
+    const now = new Date();
+    const istMillis = now.getTime() + (now.getTimezoneOffset() * 60000) + (5.5 * 3600000);
+    const ist = new Date(istMillis);
+    return {y: ist.getFullYear(), m: ist.getMonth() + 1, d: ist.getDate()};
+  }
+  const {y, m, d} = todayIST();
+  const cacheBust = '?_=' + Date.now();
+
+  // Query by explicit IST date first (bypasses any CDN staleness on "/today"),
+  // then fall back to the plain "/today" endpoints, then to CORS proxies.
+  const PRIMARY = `${PRIMARY_HOST}/v2/hukamnama/${y}/${m}/${d}`;
+  const ENDPOINTS = [
+    PRIMARY + cacheBust,
+    `${MIRROR_HOST}/v2/hukamnama/${y}/${m}/${d}` + cacheBust,
+    PRIMARY_HOST + '/v2/hukamnama/today' + cacheBust,
+    MIRROR_HOST + '/v2/hukamnama/today' + cacheBust,
+    'https://corsproxy.io/?url=' + encodeURIComponent(PRIMARY),
+    'https://api.allorigins.win/raw?url=' + encodeURIComponent(PRIMARY),
+    'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(PRIMARY)
+  ];
+
+  function fetchWithTimeout(url, ms){
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), ms);
+    return fetch(url, {cache: 'no-store', signal: controller.signal}).finally(() => clearTimeout(timer));
+  }
+
+  async function fetchHukamnama(){
+    for(const url of ENDPOINTS){
+      try{
+        const res = await fetchWithTimeout(url, 8000);
+        if(!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        if(!data || data.error || !data.hukamnama) throw new Error('Malformed response');
+        return {data, live: true};
+      }catch(err){
+        continue;
+      }
+    }
+    // Every live source failed — fall back to the embedded copy rather than
+    // showing an error page with nothing to read. This copy is dated, not
+    // relabeled as "today", so it's never presented as something it isn't.
+    return {data: FALLBACK_DATA, live: false};
+  }
+
+  fetchHukamnama().then(({data, live}) => renderHukamnama(data, live));
+})();
+</script>
+</body>
+</html>
